@@ -1,0 +1,46 @@
+bright profiles create endevor pe02brs-cust015 --host 192.19.230.157  --port 6002 --username cust015 --password cust015 --ru false --protocol http
+bright profiles create endevor-location marbles --instance ENDEVOR --environment DEV --system MARBLES --subsystem MARBLES --ccid CUST015 --maxrc 0 --stage-number 1 --comment CUST015 
+Bright endevor list elements
+bright endevor retrieve element MARBLE15 --typ COBOL --to-file MARBLE15.cbl --override-signout
+## MODIFY CODE
+bright endevor update element MARBLE15 --typ COBOL --from-file MARBLE15.cbl --override-signout
+bright endevor generate element MARBLE15 --type COBOL --override-signout
+bright endevor generate element MARBLE15 --type LNK --override-signout
+
+git clone https://github.com/chipset/Brightside-Workshop-15
+npm install gulp-cli -g
+npm install
+
+git status
+git config --global user.email "did it"
+git config --global user.name "did it"
+git commit -a -m "Adding tasks"
+git push
+
+gulp build
+
+##Update Jenkins and Credentials
+##Run the build
+
+
+## Set up zosmf profile
+bright profiles create zosmf pe02brs-cust015 --host 192.19.230.157  --port 443 --user cust015 --pass cust015 --reject-unauthorized false
+
+## List the members
+bright files list all-members "PRODUCT.NDVR.MARBLES.MARBLES.D1.LOADLIB"
+bright files list am "PRODUCT.NDVR.MARBLES.MARBLES.D1.DBRMLIB"
+
+## Copy the Libraries
+bright profiles create fmp pe02brs-cust015 --host 192.19.230.157  --port 6001 --user cust015 --pass cust015 --protocol http --reject-unauthorized false
+bright file-master-plus copy data-set "PRODUCT.NDVR.MARBLES.MARBLES.D1.LOADLIB" "CICS.TRAIN.MARBLES.LOADLIB" -m MARBLE15
+bright file-master-plus copy data-set "PRODUCT.NDVR.MARBLES.MARBLES.D1.DBRMLIB" "BRIGHT.MARBLES.DBRMLIB" -m MARBLE15
+
+## Submit a job and view it.
+bright jobs submit data-set "CUST015.MARBLES.JCL(MARBIND)"
+bright jobs view job-status-by-jobid XXXXXX
+
+## Activate Changes
+bright profiles create cics pe02brs-cust015 --host 192.19.230.157  --port 6000 --user cust015 --password cust015 --region-name CICSTRN1
+#### CICS REFRESH, I have to look up the command.
+bright console issue command "F CICSTRN1,MB15 CRE LAVENDER 1 2" --console-name CUST015
+bright cics refresh program "MARBLE15 --console-name CUST015
