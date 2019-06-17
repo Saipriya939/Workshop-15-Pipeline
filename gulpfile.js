@@ -112,7 +112,7 @@ gulp.task('copy-dbrm', 'Copy DBRMLIB to test environment', function (callback) {
 
 gulp.task('bind-n-grant', 'Bind & Grant Job', function (callback) {
   var fmp = (typeof process.env.FMP === "undefined") ? "" : process.env.FMP,
-      command = 'bright jobs submit data-set "cust008.MARBLES.JCL(MARBIND)" --rff jobid -rft string';
+      command = 'bright jobs submit data-set "cust008.MARBLES.JCL(MARBIND)" --rff jobid --rft string';
 
   cmd.get(command, function (err, data, stderr) {
     if(err){
