@@ -12,6 +12,18 @@ pipeline {
         ENDEVOR="$ENDEVOR_CONNECTION $ENDEVOR_LOCATION"
         //mainframe host ip address
         ZOWE_OPT_HOST=credentials('eoshost')
+
+        ////DAY-2 PART
+        // File Master Plus Connection Details
+        FMP="--port 6001 --protocol http --ru false"
+
+        //CICS Connection Details
+        CICS="--port 6000 --regio-name CICSTRN1"
+
+        //zosmf info
+        ZOWE_OPT_PORT="443"
+        ZOWE_OPT_REJECT_UNAUTHORIZED=false
+        
     }
     stages {
         stage('local setup') {
