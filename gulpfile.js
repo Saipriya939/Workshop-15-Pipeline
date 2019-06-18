@@ -81,7 +81,7 @@ gulp.task('build-lnk', 'Build COBOL element', function (callback) {
 
 gulp.task('copy-load', 'Copy LOADLIB to test environment', function (callback) {
   var fmp = (typeof process.env.FMP === "undefined") ? "" : process.env.FMP,
-      command = 'bright file-master-plus copy data-set "PRODUCT.NDVR.MARBLES.MARBLES.D1.LOADLIB" "CICS.train.marbles.loadlib" -m MARBLE08' + fmp;
+      command = 'bright file-master-plus copy data-set "PRODUCT.NDVR.MARBLES.MARBLES.D1.LOADLIB" "CICS.train.marbles.loadlib" -m MARBLE08 ' + fmp;
 
   cmd.get(command, function (err, data, stderr) {
     if(err){
@@ -97,7 +97,7 @@ gulp.task('copy-load', 'Copy LOADLIB to test environment', function (callback) {
 
 gulp.task('copy-dbrm', 'Copy DBRMLIB to test environment', function (callback) {
   var fmp = (typeof process.env.FMP === "undefined") ? "" : process.env.FMP,
-      command = 'bright file-master-plus copy data-set "PRODUCT.NDVR.MARBLES.MARBLES.D1.DBRMLIB" "BRIGHT.MARBLES.DBRMLIB" -m MARBLE08' + fmp;
+      command = 'bright file-master-plus copy data-set "PRODUCT.NDVR.MARBLES.MARBLES.D1.DBRMLIB" "BRIGHT.MARBLES.DBRMLIB" -m MARBLE08 ' + fmp;
 
   cmd.get(command, function (err, data, stderr) {
     if(err){
@@ -137,7 +137,7 @@ gulp.task('bind-n-grant', 'Bind & Grant Job', function (callback) {
 
 gulp.task('cics-refresh', 'Refresh(new-copy) MARBLE08 CICS Program', function (callback) {
   var cics = (typeof process.env.CICS === "undefined") ? "" : process.env.CICS,
-      command = 'bright cics refresh program "MARBLE08"' + cics;
+      command = 'bright cics refresh program "MARBLE08" ' + cics;
 
   cmd.get(command, function (err, data, stderr) {
     if(err){
