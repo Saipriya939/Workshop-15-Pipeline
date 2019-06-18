@@ -18,7 +18,7 @@ pipeline {
         FMP="--port 6001 --protocol http --ru false"
 
         //CICS Connection Details
-        CICS="--port 6000 --regio-name CICSTRN1"
+        CICS="--port 6000 --region-name CICSTRN1"
 
         //zosmf info
         ZOWE_OPT_PORT="443"
