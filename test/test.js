@@ -58,7 +58,7 @@ function awaitJobCompletion(jobId, callback, tries = 30, wait = 1000) {
 */
 function createMarble(color, quantity=1, cost=1, callback) {
   cmd.get(
-    'bright console issue command "F CICSTRN1,MB15 CRE ' + color + " " + quantity + " " + cost + '" --cn CUST015',
+    'bright console issue command "F CICSTRN1,MB08 CRE ' + color + " " + quantity + " " + cost + '" --cn CUST008',
     function (err, data, stderr) {
       typeof callback === 'function' && callback(err, data, stderr);
     }
@@ -72,7 +72,7 @@ function createMarble(color, quantity=1, cost=1, callback) {
 */
 function deleteMarble(color, callback) {
   cmd.get(
-    'bright console issue command "F CICSTRN1,MB15 DEL ' + color + '" --cn CUST015',
+    'bright console issue command "F CICSTRN1,MB08 DEL ' + color + '" --cn CUST008',
     function (err, data, stderr) {
       typeof callback === 'function' && callback(err, data, stderr);
     }
@@ -88,7 +88,7 @@ function deleteMarble(color, callback) {
 function getMarbleQuantity(color, callback) {
   // Submit job, await completion
   cmd.get(
-    'bright jobs submit data-set "CUST015.MARBLES.JCL(MARBDB2)" --rff jobid --rft string',
+    'bright jobs submit data-set "CUST008.MARBLES.JCL(MARBDB2)" --rff jobid --rft string',
     function (err, data, stderr) {
       if(err){
         callback(err);
@@ -136,7 +136,7 @@ function getMarbleQuantity(color, callback) {
 */
 function updateMarble(color, quantity, callback) {
   cmd.get(
-    'bright console issue command "F CICSTRN1,MB15 UPD ' + color + " " + quantity + '" --cn CUST015',
+    'bright console issue command "F CICSTRN1,MB08 UPD ' + color + " " + quantity + '" --cn CUST008',
     function (err, data, stderr) {
       typeof callback === 'function' && callback(err, data, stderr);
     }
