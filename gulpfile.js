@@ -135,9 +135,9 @@ gulp.task('bind-n-grant', 'Bind & Grant Job', function (callback) {
   });
 });
 
-gulp.task('cics-refresh', 'Cics Refresh', function (callback) {
+gulp.task('cics-refresh', 'Refresh(new-copy) MARBLE08 CICS Program', function (callback) {
   var cics = (typeof process.env.CICS === "undefined") ? "" : process.env.CICS,
-      command = 'bright cics refresh program "MARBLE08"'+cics;
+      command = 'bright cics refresh program "MARBLE08"' + cics;
 
   cmd.get(command, function (err, data, stderr) {
     if(err){
