@@ -23,7 +23,7 @@ pipeline {
         //zosmf info
         ZOWE_OPT_PORT="443"
         ZOWE_OPT_REJECT_UNAUTHORIZED=false
-        
+
     }
     stages {
         stage('local setup') {
@@ -53,7 +53,7 @@ pipeline {
                  withCredentials([usernamePassword(credentialsId: 'eosCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASSWORD')]) {
                 //     //ZOWE_OPT_PASS is used by FMP plugin
                     withCredentials([usernamePassword(credentialsId: 'eosCreds', usernameVariable: 'ZOWE_OPT_USER', passwordVariable: 'ZOWE_OPT_PASS')]) {
-                //        
+                    sh 'gulp deploy'        
                      }
                  }
             }
