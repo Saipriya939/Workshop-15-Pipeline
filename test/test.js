@@ -116,7 +116,7 @@ function getMarbleQuantity(color, callback) {
                     var row = found[0].split("|");
                     var quantity = Number(row[2]);
                     var cost = Number(row[3]);
-                    callback(err, quantity);
+                    callback(err, quantity, cost);
                   }
                 }
               }
